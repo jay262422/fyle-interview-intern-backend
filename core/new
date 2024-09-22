@@ -1,0 +1,87 @@
+{
+    "data": [
+        {
+            "content": "Updated Essay T1 content",
+            "created_at": "2024-09-18T18:27:18.693145",
+            "grade": null,
+            "id": 1,
+            "state": "DRAFT",
+            "student_id": 1,
+            "teacher_id": 2,
+            "updated_at": "2024-09-19T03:34:31.943626"
+        },
+        {
+            "content": "THESIS T1",
+            "created_at": "2024-09-18T18:27:18.708740",
+            "grade": null,
+            "id": 2,
+            "state": "DRAFT",
+            "student_id": 1,
+            "teacher_id": null,
+            "updated_at": "2024-09-18T18:27:18.708740"
+        },
+        {
+            "content": "SOLUTION T1",
+            "created_at": "2024-09-18T18:27:18.708740",
+            "grade": null,
+            "id": 5,
+            "state": "DRAFT",
+            "student_id": 1,
+            "teacher_id": null,
+            "updated_at": "2024-09-18T18:27:18.708740"
+        },
+        {
+            "content": "New Assignment T2 content",
+            "created_at": "2024-09-19T03:35:27.737226",
+            "grade": "A",
+            "id": 6,
+            "state": "GRADED",
+            "student_id": 1,
+            "teacher_id": 2,
+            "updated_at": "2024-09-19T03:38:39.623269"
+        }
+    ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+FAILED tests/principals_test.py::test_grade_assignment_draft_assignment
+
+
+
+FAILED tests/students_test.py::test_assignment_resubmit_error
+
+
+
+FAILED tests/SQL/sql_test.py::test_get_assignments_in_graded_state_for_each_student
+FAILED tests/SQL/sql_test.py::test_get_grade_A_assignments_for_teacher_with_max_grading
+
+
+
+
+
+
+tests/students_test.py::test_get_assignments_student_1 PASSED
+tests/students_test.py::test_get_assignments_student_2 PASSED
+tests/students_test.py::test_post_assignment_student_1 PASSED
+tests/teachers_test.py::test_grade_assignment_bad_grade PASSED
+tests/teachers_test.py::test_grade_assignment_bad_assignment PASSED
+
+FAILED tests/principals_test.py::test_get_assignments PASSED
+FAILED tests/teachers_test.py::test_get_assignments_teacher_1 PASSED
+FAILED tests/principals_test.py::test_grade_assignment PASSED
+FAILED tests/principals_test.py::test_regrade_assignment PASSED
+FAILED tests/teachers_test.py::test_get_assignments_teacher_2 PASSED
+FAILED tests/students_test.py::test_submit_assignment_student_1 PASSED
+FAILED tests/teachers_test.py::test_grade_assignment_cross
+FAILED tests/teachers_test.py::test_grade_assignment_draft_assignment
+FAILED tests/students_test.py::test_post_assignment_null_content

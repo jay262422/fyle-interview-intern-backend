@@ -3,7 +3,7 @@ from marshmallow_sqlalchemy import SQLAlchemyAutoSchema, auto_field
 from marshmallow_enum import EnumField
 from core.models.assignments import Assignment, GradeEnum
 from core.libs.helpers import GeneralObject
-
+from marshmallow import ValidationError
 
 class AssignmentSchema(SQLAlchemyAutoSchema):
     class Meta:
@@ -11,7 +11,7 @@ class AssignmentSchema(SQLAlchemyAutoSchema):
         unknown = EXCLUDE
 
     id = auto_field(required=False, allow_none=True)
-    content = auto_field()
+    content = auto_field(required=True)
     created_at = auto_field(dump_only=True)
     updated_at = auto_field(dump_only=True)
     teacher_id = auto_field(dump_only=True)
@@ -21,8 +21,10 @@ class AssignmentSchema(SQLAlchemyAutoSchema):
 
     @post_load
     def initiate_class(self, data_dict, many, partial):
-        # pylint: disable=unused-argument,no-self-use
-        return Assignment(**data_dict)
+        if data_dict.get('content') == None:
+            raise ValidationError("Content cannot be null")
+        else:
+            return Assignment(**data_dict)
 
 
 class AssignmentSubmitSchema(Schema):
@@ -32,9 +34,9 @@ class AssignmentSubmitSchema(Schema):
     id = fields.Integer(required=True, allow_none=False)
     teacher_id = fields.Integer(required=True, allow_none=False)
 
+
     @post_load
     def initiate_class(self, data_dict, many, partial):
-        # pylint: disable=unused-argument,no-self-use
         return GeneralObject(**data_dict)
 
 
@@ -43,7 +45,7 @@ class AssignmentGradeSchema(Schema):
         unknown = EXCLUDE
 
     id = fields.Integer(required=True, allow_none=False)
-    grade = EnumField(GradeEnum, required=True, allow_none=False)
+    grade = EnumField(GradeEnum, required=True)
 
     @post_load
     def initiate_class(self, data_dict, many, partial):
